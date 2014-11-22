@@ -41,7 +41,7 @@ See [BUILD](#build).
 2. tar xvf pacserver-[version].tar.gz
 3. cd pacserver-[version]
 4. ./configure
-5. make & make install
+5. make & sudo make install
 6. Run and enjoy it!
 
 

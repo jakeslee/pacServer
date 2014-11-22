@@ -1,6 +1,5 @@
-bin_PROGRAMS=pacserver
-pacserver_SOURCES=pacserver.c socklib.c socklib.h
+buildbindir=$(top_builddir)/bin
 confdir=$(sysconfdir)/pacserver
-conf_DATA=pac.txt
-dist_data_DATA=pac.txt
-pacserver_CFLAGS=-DCONFDIR=\"$(confdir)\"
+bin_PROGRAMS=$(buildbindir)/pacserver
+__buildbindir__pacserver_SOURCES=pacserver.c socklib.c socklib.h
+__buildbindir__pacserver_CFLAGS=-DCONFDIR=\"$(confdir)\"

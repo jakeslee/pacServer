@@ -15,7 +15,6 @@
 
 
 
-
 am__is_gnu_make = test -n '$(MAKEFILE_LIST)' && test -n '$(MAKELEVEL)'
 am__make_running_with_option = \
   case $${target_option-} in \
@@ -77,10 +76,10 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = pacserver$(EXEEXT)
+bin_PROGRAMS = $(buildbindir)/pacserver$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
-	$(top_srcdir)/depcomp $(dist_data_DATA)
+	$(top_srcdir)/depcomp
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -89,15 +88,18 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)" \
-	"$(DESTDIR)$(datadir)"
+am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_pacserver_OBJECTS = pacserver-pacserver.$(OBJEXT) \
-	pacserver-socklib.$(OBJEXT)
-pacserver_OBJECTS = $(am_pacserver_OBJECTS)
-pacserver_LDADD = $(LDADD)
-pacserver_LINK = $(CCLD) $(pacserver_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+am___buildbindir__pacserver_OBJECTS =  \
+	__buildbindir__pacserver-pacserver.$(OBJEXT) \
+	__buildbindir__pacserver-socklib.$(OBJEXT)
+__buildbindir__pacserver_OBJECTS =  \
+	$(am___buildbindir__pacserver_OBJECTS)
+__buildbindir__pacserver_LDADD = $(LDADD)
+__buildbindir__pacserver_LINK = $(CCLD) \
+	$(__buildbindir__pacserver_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+am__dirstamp = $(am__leading_dot)dirstamp
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -130,41 +132,13 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(pacserver_SOURCES)
-DIST_SOURCES = $(pacserver_SOURCES)
+SOURCES = $(__buildbindir__pacserver_SOURCES)
+DIST_SOURCES = $(__buildbindir__pacserver_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
-am__vpath_adj = case $$p in \
-    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
-    *) f=$$p;; \
-  esac;
-am__strip_dir = f=`echo $$p | sed -e 's|^.*/||'`;
-am__install_max = 40
-am__nobase_strip_setup = \
-  srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*|]/\\\\&/g'`
-am__nobase_strip = \
-  for p in $$list; do echo "$$p"; done | sed -e "s|$$srcdirstrip/||"
-am__nobase_list = $(am__nobase_strip_setup); \
-  for p in $$list; do echo "$$p $$p"; done | \
-  sed "s| $$srcdirstrip/| |;"' / .*\//!s/ .*/ ./; s,\( .*\)/[^/]*$$,\1,' | \
-  $(AWK) 'BEGIN { files["."] = "" } { files[$$2] = files[$$2] " " $$1; \
-    if (++n[$$2] == $(am__install_max)) \
-      { print $$2, files[$$2]; n[$$2] = 0; files[$$2] = "" } } \
-    END { for (dir in files) print dir, files[dir] }'
-am__base_list = \
-  sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
-  sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
-am__uninstall_files_from_dir = { \
-  test -z "$$files" \
-    || { test ! -d "$$dir" && test ! -f "$$dir" && test ! -r "$$dir"; } \
-    || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
-         $(am__cd) "$$dir" && rm -f $$files; }; \
-  }
-DATA = $(conf_DATA) $(dist_data_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -221,15 +195,15 @@ OBJEXT = o
 PACKAGE = pac-server
 PACKAGE_BUGREPORT = jakeslee66@gmail.com
 PACKAGE_NAME = PAC Server
-PACKAGE_STRING = PAC Server 1.0.0
+PACKAGE_STRING = PAC Server 1.0.1
 PACKAGE_TARNAME = pac-server
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.0.0
+PACKAGE_VERSION = 1.0.1
 PATH_SEPARATOR = :
 SET_MAKE = 
 SHELL = /bin/bash
 STRIP = 
-VERSION = 1.0.0
+VERSION = 1.0.1
 abs_builddir = /home/jakes/programming/pacServer/src
 abs_srcdir = /home/jakes/programming/pacServer/src
 abs_top_builddir = /home/jakes/programming/pacServer
@@ -272,11 +246,10 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-pacserver_SOURCES = pacserver.c socklib.c socklib.h
+buildbindir = $(top_builddir)/bin
 confdir = $(sysconfdir)/pacserver
-conf_DATA = pac.txt
-dist_data_DATA = pac.txt
-pacserver_CFLAGS = -DCONFDIR=\"$(confdir)\"
+__buildbindir__pacserver_SOURCES = pacserver.c socklib.c socklib.h
+__buildbindir__pacserver_CFLAGS = -DCONFDIR=\"$(confdir)\"
 all: all-am
 
 .SUFFIXES:
@@ -353,10 +326,13 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+$(buildbindir)/$(am__dirstamp):
+	@$(MKDIR_P) $(buildbindir)
+	@: > $(buildbindir)/$(am__dirstamp)
 
-pacserver$(EXEEXT): $(pacserver_OBJECTS) $(pacserver_DEPENDENCIES) $(EXTRA_pacserver_DEPENDENCIES) 
-	@rm -f pacserver$(EXEEXT)
-	$(AM_V_CCLD)$(pacserver_LINK) $(pacserver_OBJECTS) $(pacserver_LDADD) $(LIBS)
+$(buildbindir)/pacserver$(EXEEXT): $(__buildbindir__pacserver_OBJECTS) $(__buildbindir__pacserver_DEPENDENCIES) $(EXTRA___buildbindir__pacserver_DEPENDENCIES) $(buildbindir)/$(am__dirstamp)
+	@rm -f $(buildbindir)/pacserver$(EXEEXT)
+	$(AM_V_CCLD)$(__buildbindir__pacserver_LINK) $(__buildbindir__pacserver_OBJECTS) $(__buildbindir__pacserver_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -364,8 +340,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/pacserver-pacserver.Po
-include ./$(DEPDIR)/pacserver-socklib.Po
+include ./$(DEPDIR)/__buildbindir__pacserver-pacserver.Po
+include ./$(DEPDIR)/__buildbindir__pacserver-socklib.Po
 
 .c.o:
 	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -381,75 +357,33 @@ include ./$(DEPDIR)/pacserver-socklib.Po
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(AM_V_CC_no)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-pacserver-pacserver.o: pacserver.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pacserver_CFLAGS) $(CFLAGS) -MT pacserver-pacserver.o -MD -MP -MF $(DEPDIR)/pacserver-pacserver.Tpo -c -o pacserver-pacserver.o `test -f 'pacserver.c' || echo '$(srcdir)/'`pacserver.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/pacserver-pacserver.Tpo $(DEPDIR)/pacserver-pacserver.Po
-#	$(AM_V_CC)source='pacserver.c' object='pacserver-pacserver.o' libtool=no \
+__buildbindir__pacserver-pacserver.o: pacserver.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(__buildbindir__pacserver_CFLAGS) $(CFLAGS) -MT __buildbindir__pacserver-pacserver.o -MD -MP -MF $(DEPDIR)/__buildbindir__pacserver-pacserver.Tpo -c -o __buildbindir__pacserver-pacserver.o `test -f 'pacserver.c' || echo '$(srcdir)/'`pacserver.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/__buildbindir__pacserver-pacserver.Tpo $(DEPDIR)/__buildbindir__pacserver-pacserver.Po
+#	$(AM_V_CC)source='pacserver.c' object='__buildbindir__pacserver-pacserver.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pacserver_CFLAGS) $(CFLAGS) -c -o pacserver-pacserver.o `test -f 'pacserver.c' || echo '$(srcdir)/'`pacserver.c
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(__buildbindir__pacserver_CFLAGS) $(CFLAGS) -c -o __buildbindir__pacserver-pacserver.o `test -f 'pacserver.c' || echo '$(srcdir)/'`pacserver.c
 
-pacserver-pacserver.obj: pacserver.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pacserver_CFLAGS) $(CFLAGS) -MT pacserver-pacserver.obj -MD -MP -MF $(DEPDIR)/pacserver-pacserver.Tpo -c -o pacserver-pacserver.obj `if test -f 'pacserver.c'; then $(CYGPATH_W) 'pacserver.c'; else $(CYGPATH_W) '$(srcdir)/pacserver.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/pacserver-pacserver.Tpo $(DEPDIR)/pacserver-pacserver.Po
-#	$(AM_V_CC)source='pacserver.c' object='pacserver-pacserver.obj' libtool=no \
+__buildbindir__pacserver-pacserver.obj: pacserver.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(__buildbindir__pacserver_CFLAGS) $(CFLAGS) -MT __buildbindir__pacserver-pacserver.obj -MD -MP -MF $(DEPDIR)/__buildbindir__pacserver-pacserver.Tpo -c -o __buildbindir__pacserver-pacserver.obj `if test -f 'pacserver.c'; then $(CYGPATH_W) 'pacserver.c'; else $(CYGPATH_W) '$(srcdir)/pacserver.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/__buildbindir__pacserver-pacserver.Tpo $(DEPDIR)/__buildbindir__pacserver-pacserver.Po
+#	$(AM_V_CC)source='pacserver.c' object='__buildbindir__pacserver-pacserver.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pacserver_CFLAGS) $(CFLAGS) -c -o pacserver-pacserver.obj `if test -f 'pacserver.c'; then $(CYGPATH_W) 'pacserver.c'; else $(CYGPATH_W) '$(srcdir)/pacserver.c'; fi`
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(__buildbindir__pacserver_CFLAGS) $(CFLAGS) -c -o __buildbindir__pacserver-pacserver.obj `if test -f 'pacserver.c'; then $(CYGPATH_W) 'pacserver.c'; else $(CYGPATH_W) '$(srcdir)/pacserver.c'; fi`
 
-pacserver-socklib.o: socklib.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pacserver_CFLAGS) $(CFLAGS) -MT pacserver-socklib.o -MD -MP -MF $(DEPDIR)/pacserver-socklib.Tpo -c -o pacserver-socklib.o `test -f 'socklib.c' || echo '$(srcdir)/'`socklib.c
-	$(AM_V_at)$(am__mv) $(DEPDIR)/pacserver-socklib.Tpo $(DEPDIR)/pacserver-socklib.Po
-#	$(AM_V_CC)source='socklib.c' object='pacserver-socklib.o' libtool=no \
+__buildbindir__pacserver-socklib.o: socklib.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(__buildbindir__pacserver_CFLAGS) $(CFLAGS) -MT __buildbindir__pacserver-socklib.o -MD -MP -MF $(DEPDIR)/__buildbindir__pacserver-socklib.Tpo -c -o __buildbindir__pacserver-socklib.o `test -f 'socklib.c' || echo '$(srcdir)/'`socklib.c
+	$(AM_V_at)$(am__mv) $(DEPDIR)/__buildbindir__pacserver-socklib.Tpo $(DEPDIR)/__buildbindir__pacserver-socklib.Po
+#	$(AM_V_CC)source='socklib.c' object='__buildbindir__pacserver-socklib.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pacserver_CFLAGS) $(CFLAGS) -c -o pacserver-socklib.o `test -f 'socklib.c' || echo '$(srcdir)/'`socklib.c
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(__buildbindir__pacserver_CFLAGS) $(CFLAGS) -c -o __buildbindir__pacserver-socklib.o `test -f 'socklib.c' || echo '$(srcdir)/'`socklib.c
 
-pacserver-socklib.obj: socklib.c
-	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pacserver_CFLAGS) $(CFLAGS) -MT pacserver-socklib.obj -MD -MP -MF $(DEPDIR)/pacserver-socklib.Tpo -c -o pacserver-socklib.obj `if test -f 'socklib.c'; then $(CYGPATH_W) 'socklib.c'; else $(CYGPATH_W) '$(srcdir)/socklib.c'; fi`
-	$(AM_V_at)$(am__mv) $(DEPDIR)/pacserver-socklib.Tpo $(DEPDIR)/pacserver-socklib.Po
-#	$(AM_V_CC)source='socklib.c' object='pacserver-socklib.obj' libtool=no \
+__buildbindir__pacserver-socklib.obj: socklib.c
+	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(__buildbindir__pacserver_CFLAGS) $(CFLAGS) -MT __buildbindir__pacserver-socklib.obj -MD -MP -MF $(DEPDIR)/__buildbindir__pacserver-socklib.Tpo -c -o __buildbindir__pacserver-socklib.obj `if test -f 'socklib.c'; then $(CYGPATH_W) 'socklib.c'; else $(CYGPATH_W) '$(srcdir)/socklib.c'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/__buildbindir__pacserver-socklib.Tpo $(DEPDIR)/__buildbindir__pacserver-socklib.Po
+#	$(AM_V_CC)source='socklib.c' object='__buildbindir__pacserver-socklib.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
-#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(pacserver_CFLAGS) $(CFLAGS) -c -o pacserver-socklib.obj `if test -f 'socklib.c'; then $(CYGPATH_W) 'socklib.c'; else $(CYGPATH_W) '$(srcdir)/socklib.c'; fi`
-install-confDATA: $(conf_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(conf_DATA)'; test -n "$(confdir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(confdir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(confdir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(confdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(confdir)" || exit $$?; \
-	done
-
-uninstall-confDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(conf_DATA)'; test -n "$(confdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(confdir)'; $(am__uninstall_files_from_dir)
-install-dist_dataDATA: $(dist_data_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(dist_data_DATA)'; test -n "$(datadir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(datadir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(datadir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(datadir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(datadir)" || exit $$?; \
-	done
-
-uninstall-dist_dataDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(dist_data_DATA)'; test -n "$(datadir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(datadir)'; $(am__uninstall_files_from_dir)
+#	$(AM_V_CC_no)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(__buildbindir__pacserver_CFLAGS) $(CFLAGS) -c -o __buildbindir__pacserver-socklib.obj `if test -f 'socklib.c'; then $(CYGPATH_W) 'socklib.c'; else $(CYGPATH_W) '$(srcdir)/socklib.c'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -535,9 +469,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(PROGRAMS) $(DATA)
+all-am: Makefile $(PROGRAMS)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)" "$(DESTDIR)$(datadir)"; do \
+	for dir in "$(DESTDIR)$(bindir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -566,6 +500,7 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-test -z "$(buildbindir)/$(am__dirstamp)" || rm -f $(buildbindir)/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -592,7 +527,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-confDATA install-dist_dataDATA
+install-data-am:
 
 install-dvi: install-dvi-am
 
@@ -637,8 +572,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS uninstall-confDATA \
-	uninstall-dist_dataDATA
+uninstall-am: uninstall-binPROGRAMS
 
 .MAKE: install-am install-strip
 
@@ -646,16 +580,15 @@ uninstall-am: uninstall-binPROGRAMS uninstall-confDATA \
 	clean-binPROGRAMS clean-generic cscopelist-am ctags ctags-am \
 	distclean distclean-compile distclean-generic distclean-tags \
 	distdir dvi dvi-am html html-am info info-am install \
-	install-am install-binPROGRAMS install-confDATA install-data \
-	install-data-am install-dist_dataDATA install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic pdf pdf-am ps ps-am \
-	tags tags-am uninstall uninstall-am uninstall-binPROGRAMS \
-	uninstall-confDATA uninstall-dist_dataDATA
+	install-am install-binPROGRAMS install-data install-data-am \
+	install-dvi install-dvi-am install-exec install-exec-am \
+	install-html install-html-am install-info install-info-am \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic pdf pdf-am \
+	ps ps-am tags tags-am uninstall uninstall-am \
+	uninstall-binPROGRAMS
 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

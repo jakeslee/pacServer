@@ -30,7 +30,7 @@
 
 # Temporay files
 *~
-
+bin/
 
 # Eclipse Project files
 .project

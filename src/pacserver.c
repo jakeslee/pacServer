@@ -36,7 +36,7 @@ int main(int args, char * argv[]){
 	}else
 		port = atoi(argv[1]);
 	if(chdir(CONFDIR) == -1){
-		printf("Error configuration path.\n");
+		printf("Error configuration path: %s.\n", CONFDIR);
 		return 1;
 	}
 	printf("Changed PWD to %s.\n",CONFDIR );

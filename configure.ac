@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT(PAC Server, 1.0.0, jakeslee66@gmail.com)
-AC_CONFIG_SRCDIR([src/socklib.h])
+AC_INIT(PAC Server, 1.0.1, jakeslee66@gmail.com)
+AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS(config.h)
 AM_INIT_AUTOMAKE
 
@@ -23,5 +23,6 @@ AC_FUNC_WAIT3
 AC_CHECK_FUNCS([bzero gethostbyname gethostname socket])
 
 AC_CONFIG_FILES([Makefile
+                 conf/Makefile
                  src/Makefile])
 AC_OUTPUT
