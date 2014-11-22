@@ -103,8 +103,8 @@ void process_rq(int fd){
    ------------------------------------------------------ */
 
 void header( FILE *fp, int content_len ){
-	fprintf(fp, "HTTP/1.0 200 OK\r\n"
-			"Server: PAC Server\r\n"
+	fprintf(fp, "HTTP/1.1 200 OK\r\n"
+			"Server: PACServer\r\n"
 			"Content-Type: application/x-ns-proxy-autoconfig\r\n"
 			"Content-Length: %d\r\n"
 			"Connection: Close\r\n\r\n",  content_len);

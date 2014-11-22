@@ -16,10 +16,10 @@ Download [latest release](/releases/latest).
 
 ### Quick Start
 
-#### Install Binary
+#### Install Binaries
 
-1. Download binary from release page.
-2. Unpack the tar.gz pack.
+1. Download pac-server-binaries-[version].tar.gz from release page.
+2. tar xvf pac-server-binaries-[version].tar.gz
 3. Copy bin/pacserver to /usr/local/bin.
 4. Copy conf/pac.txt to /usr/local/etc/pacserver.
 5. Run pacserver. 
@@ -38,14 +38,17 @@ See [BUILD](#build).
 ### BUILD
 
 1. Download the latest source archive from github.
-2. tar xvf pac-server-binaries-[version].tar.gz
-3. pac-server-binaries-[version]
+2. tar xvf pac-server-[version].tar.gz
+3. cd pac-server-[version]
 4. ./configure
 5. make & sudo make install
 6. Run and enjoy it!
 
 
-### License
-============
+### License  
 
 GPLv3
+
+
+
+
