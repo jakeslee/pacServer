@@ -58,3 +58,5 @@ Makefile.in
 /stamp-h1
 /configure
 /config.h.in
+/config.status
+
