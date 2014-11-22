@@ -1,0 +1,3 @@
+SUBDIRS=src
+AUTOMAKE_OPTIONS=foreign
+dist_data_DATA=README.md LICENSE 

@@ -31,9 +31,11 @@
 # Temporay files
 *~
 
+
 # Eclipse Project files
 .project
 .cproject
+src/.deps/
 
 # Dist 
 *.tar.gz
