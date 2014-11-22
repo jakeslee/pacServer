@@ -38,6 +38,9 @@
 # Dist 
 *.tar.gz
 
+# Log files
+*.log
+
 # Autotools
 # http://www.gnu.org/software/automake
 
@@ -53,7 +56,5 @@ Makefile.in
 /install-sh
 /missing
 /stamp-h1
-/config.log
 /configure
 /config.h.in
-
