@@ -12,7 +12,7 @@ A simple pac file host server for linux with C.
 
 ### Download
 
-Download [latest release].
+Download [latest release](/releases/latest).
 
 ### Quick Start
 
@@ -38,13 +38,14 @@ See [BUILD](#build).
 ### BUILD
 
 1. Download the latest source archive from github.
-2. tar xvf pacserver-[version].tar.gz
-3. cd pacserver-[version]
+2. tar xvf pac-server-binaries-[version].tar.gz
+3. pac-server-binaries-[version]
 4. ./configure
 5. make & sudo make install
 6. Run and enjoy it!
 
 
 ### License
-=========
+============
+
 GPLv3
