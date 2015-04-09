@@ -1,5 +1,7 @@
 PAC File Host Server
 ====================
+![release](https://img.shields.io/github/release/jakeslee/pacserver.svg)
+
 A simple pac file host server for linux with C. 
 
 
